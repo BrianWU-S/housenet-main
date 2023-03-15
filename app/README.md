@@ -1,4 +1,4 @@
-## HouseNET Front-end
+## housenet-frontend
 The frontend for the house rental website built by CSE210 Group16.
 
 ### Tech Stack
