@@ -1,0 +1,33 @@
+name: Docker
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    name: Build and deploy docker image to GCP
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
+    steps:
+    - name: Login
+      uses: google-github-actions/setup-gcloud@v0
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        service_account_email: ${{ secrets.GCP_EMAIL }}
+        service_account_key: ${{ secrets.GCP_CREDENTIALS }}
+
+    - name: Configure Docker
+      run: gcloud auth configure-docker --quiet
+
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: docker build . -t $IMAGE_NAME --build-arg DB_PASSWORD=${{ secrets.DB_PASSWORD }} --build-arg DB_PUBLIC_IP_ADDRESS=${{ secrets.DB_PUBLIC_IP_ADDRESS }}
+
+    - name: Push Docker image
+      run: docker push $IMAGE_NAME
+
+    - name: Deploy Docker image
+      run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-west1 --platform managed --set-env-vars DB_PASSWORD=${{ secrets.DB_PASSWORD }},DB_PUBLIC_IP_ADDRESS=${{ secrets.DB_PUBLIC_IP_ADDRESS }}
