@@ -33,6 +33,9 @@ Open [http://localhost:3000](http://localhost:3600) to view it in your browser.
 - [ ] Search
   - [ ] filter
   - [ ] content
-- [ ] Chatroom
+- [ ] Detailed Page
+  - [ ] Carousel
+  - [ ] Information
+- [ ] Contact
 
 
