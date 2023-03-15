@@ -1,4 +1,4 @@
-## HouseNET for CSE210 Group16
+## housenet-frontend
 The frontend for the house rental website built by CSE210 Group16.
 
 ### Tech Stack
@@ -24,7 +24,7 @@ Installs all dependencies.
 
 `npm start`
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Open [http://localhost:3000](http://localhost:3600) to view it in your browser.
 
 ### Main Function
 - [ ] Authentification
@@ -33,6 +33,9 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - [ ] Search
   - [ ] filter
   - [ ] content
-- [ ] Chatroom
+- [ ] Detailed Page
+  - [ ] Carousel
+  - [ ] Information
+- [ ] Contact
 
 
