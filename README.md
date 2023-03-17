@@ -91,3 +91,19 @@ this is located in /app
 
 ## CI/CD
 There is currently a github action that triggers a build to gcp when a push or merge is done to main branch. It is described in .github/workflows and the dockerfile is present in the root directory
+
+### Backend CI/CD
+
+![Overview of the backend CI/CD Deployment Pipeline](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fe7c9bc1-e02d-428c-90ff-c42cc1c24729/Untitled.png)
+
+Overview of the backend CI/CD Deployment Pipeline
+
+As a Flask app utilizing PostgreSQL as its primary database, what we wanted to construct was a durable server backend which could help to serve our frontend team through useful API’s providing the data they need to construct Login/Sign up and home search pages for houses. 
+
+As shown in the figure above, the main components of this backend CI/CD pipeline were constructed primarily through the use of github actions which, when discovering a push to our primary backend repository in GitHub, are signaled to construct a dockerized container of our Flask application, then host it on Cloud Run so that it can be accessed externally. 
+
+In the GitHub Actions page of our repository, successfully deployments can be tracked through workflow success or failures which help verify the functionality of our applications in the case of any major changes. 
+
+Additionally, unit tests are  developed for our backend API to further validate functionality which are run on every repository commit. 
+
+All the database, frontend and the backend is deployed on GCP automatically. When the github actions run, if there’s no db set up, it will automatically create the DB and the tables. The APIs will be exposed and the link is provided. Since it is expensive to buy a CN and configure DNS, we decided to use the identifier-based link that GCP provides us on successful deployment from github. The environment parameters and the secrets are stored in github secrets and used in the docker file to deploy. We have not decided to use the GCP password manager since we wanted to keep the cost to a manageable amount in case our credits gets over. We also have only one instance, which is our prod instance, and we do our dev testing locally. We have taken the decision not to also deploy a stage instance for the same reason, as resources are scarce.
