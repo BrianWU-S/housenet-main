@@ -94,8 +94,6 @@ There is currently a github action that triggers a build to gcp when a push or m
 
 ### Backend CI/CD
 
-![Overview of the backend CI/CD Deployment Pipeline](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/fe7c9bc1-e02d-428c-90ff-c42cc1c24729/Untitled.png)
-
 Overview of the backend CI/CD Deployment Pipeline
 
 As a Flask app utilizing PostgreSQL as its primary database, what we wanted to construct was a durable server backend which could help to serve our frontend team through useful API’s providing the data they need to construct Login/Sign up and home search pages for houses. 
